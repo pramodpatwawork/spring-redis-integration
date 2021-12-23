@@ -50,7 +50,7 @@ public class AppConfig {
     CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
     	
     	RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-    		    .entryTtl(Duration.ofSeconds(1))
+    		    .entryTtl(Duration.ofSeconds(60))
     			.disableCachingNullValues()
     			.prefixCacheNameWith("student");
     	
