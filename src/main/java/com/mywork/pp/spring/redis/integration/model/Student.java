@@ -1,6 +1,12 @@
 package com.mywork.pp.spring.redis.integration.model;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8397881299181647488L;
 	String studentId;
 	String name;
 	String clz;
