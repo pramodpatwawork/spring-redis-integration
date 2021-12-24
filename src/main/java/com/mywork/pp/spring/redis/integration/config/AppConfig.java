@@ -15,7 +15,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
@@ -33,19 +34,33 @@ public class AppConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
+   /* 
     @Bean
-    RedisConnectionFactory jedisConnectionFactory() {
-        JedisConnectionFactory factory = new JedisConnectionFactory();
-        factory.setHostName(redisHost);
-        factory.setPort(redisPort);
-        factory.setUsePool(true);
-        return factory;
+    public RedisConnectionFactory jedisConnectionFactory() {
+      RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
+      .master("themaster")
+      .sentinel("127.0.0.1", 26579)
+      .sentinel("127.0.0.1", 26580);
+      return new JedisConnectionFactory(sentinelConfig);
+    }*/
+     
+    /**
+     * Lettuce
+     */
+    @Bean
+    public RedisConnectionFactory lettuceConnectionFactory() {
+      RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
+      .master("mymaster")
+      .sentinel("127.0.0.1", 26379)
+      .sentinel("127.0.0.1", 26380)
+      .sentinel("127.0.0.1", 26381);
+      return new LettuceConnectionFactory(sentinelConfig);
     }
 
     @Bean
     RedisTemplate<Object, Object> redisTemplate() {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<Object, Object>();
-        redisTemplate.setConnectionFactory(jedisConnectionFactory());
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory());
         return redisTemplate;
     }
 
@@ -53,7 +68,7 @@ public class AppConfig {
     CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
     	
     	RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-    		    .entryTtl(Duration.ofSeconds(60))
+    		    .entryTtl(Duration.ofSeconds(300))
     			.disableCachingNullValues();
     	
     	redisConfigs.put("student", config);
