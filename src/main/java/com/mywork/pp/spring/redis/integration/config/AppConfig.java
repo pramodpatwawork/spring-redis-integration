@@ -1,6 +1,8 @@
 package com.mywork.pp.spring.redis.integration.config;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
@@ -24,6 +26,7 @@ public class AppConfig {
 
     private @Value("${redis.host}") String redisHost;
     private @Value("${redis.port}") int redisPort;
+    private static final Map<String, RedisCacheConfiguration> redisConfigs = new HashMap<String, RedisCacheConfiguration>();
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -51,13 +54,14 @@ public class AppConfig {
     	
     	RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
     		    .entryTtl(Duration.ofSeconds(60))
-    			.disableCachingNullValues()
-    			.prefixCacheNameWith("student");
+    			.disableCachingNullValues();
+    	
+    	redisConfigs.put("student", config);
     	
     	RedisCacheManager cm = RedisCacheManager.builder(connectionFactory)
     			.cacheDefaults(config)
-    			//.withInitialCacheConfigurations(singletonMap("predefined",  
-    				//	RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()))
+    			//.withCacheConfiguration("student",config)
+    			.withInitialCacheConfigurations(redisConfigs)
     			//.transactionAware()
     			.build();
         return cm;
