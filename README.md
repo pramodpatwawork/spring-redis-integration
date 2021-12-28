@@ -42,7 +42,8 @@ make test (optional step)
 1. Go to directory $REDIS_ROOT/utils/create-cluster
 2. execute script "./create-cluster start"
 3. execute script "./create-cluster create" and type yes and enter
-4. You can now run application and can test wit cluster.
+4. Test cluster using cli, "./$REDIS_ROOT/src/redis-cli -c -p 30001", "set foo bar", "get foo"
+5. You can now run application and can test wit cluster.
 ```
 
 ```
