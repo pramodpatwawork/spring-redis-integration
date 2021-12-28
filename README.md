@@ -66,7 +66,14 @@ cluster-node-timeout 5000
 appendonly yes
 ```
 ```
-After change start 3 servers with command "./$REDIS_ROOT/redis-server $REDIS_ROOT/redis-node1.conf" (from node1 to node3)
+After change start 3 master servers with command "./$REDIS_ROOT/redis-server $REDIS_ROOT/redis-node1.conf" (from node1 to node3)
 
-output for each server should have text ** running in cluster mode **
+output for each server should have text *Running in cluster mode*
+```
+
+```
+Create cluster using redis cli
+
+./$REDIS_ROOT/redis-cli --cluster create 127.0.0.1:30001 127.0.0.1:30002 127.0.0.1:30003 --cluster-replicas 0
+
 ```
