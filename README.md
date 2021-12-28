@@ -54,3 +54,7 @@ make test (optional step)
 
 ## Create redis cluster manually
 
+1. Follow steps from site  https://iamvishalkhare.medium.com/create-a-redis-cluster-faa89c5a6bb4, snip of steps that I followed are 
+
+```
+```
