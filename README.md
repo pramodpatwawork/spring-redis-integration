@@ -22,9 +22,10 @@
 
 ## Steps to install cluster
 
-1. Visit to page https://redis.io/download
-2. Download redis from browser or wget command.
-3. Follow the instructions mentioned bellow on website, snip of step needs to be followed is:
+1. Install make using command on ubantu "sudo apt-get update" , "sudo apt-get install make". Please refer post to install make in case of any issue faced
+2. Visit to page https://redis.io/download
+3. Download redis from browser or wget command.
+4. Follow the instructions mentioned bellow on website, snip of step needs to be followed is:
 ```
 wget https://download.redis.io/releases/redis-6.2.6.tar.gz
 tar xzf redis-6.2.6.tar.gz
@@ -33,9 +34,14 @@ make
 make test (optional step)
 ```
 
-## Steps to create cluster from script 
+## Steps to create cluster from script (30001 to 30006, for testing purpose)
 
 * Step will allow to create 6 node cluster for testing purpose.
 * Nodes port will be from 30001 to 30006
-
+```
+1. Go to directory $REDIS_ROOT/utils/create-cluster
+2. execute script "./create-cluster start"
+3. execute script "./create-cluster create" and type yes and enter
+4. You can now run application and can test wit cluster.
+```
 
