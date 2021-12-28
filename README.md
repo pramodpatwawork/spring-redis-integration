@@ -43,7 +43,9 @@ make test (optional step)
 2. execute script "./create-cluster start"
 3. execute script "./create-cluster create" and type yes and enter
 4. Test cluster using cli, "./$REDIS_ROOT/src/redis-cli -c -p 30001", "set foo bar", "get foo"
-5. You can now run application and can test with cluster.
+5. clone and install spring boot project (branch sentinel demo) and test with url http://localhost:8080/students/1, 
+6. First time program will take time to return result second time cached response will be return so will be immediate, after 5 minutes cache will automatically will be destroyed
+
 ```
 
 ```
