@@ -1,1 +1,1 @@
-# spring-redis-integration
+# spring-redis-integration (high availability through sentinel)
