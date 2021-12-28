@@ -20,7 +20,7 @@
   
 ```
 
-## Steps to create cluster using script
+## Steps to install cluster
 
 1. Visit to page https://redis.io/download
 2. Download redis from browser or wget command.
@@ -32,3 +32,10 @@ cd redis-6.2.6
 make
 make test (optional step)
 ```
+
+## Steps to create cluster from script 
+
+* Step will allow to create 6 node cluster for testing purpose.
+* Nodes port will be from 30001 to 30006
+
+
