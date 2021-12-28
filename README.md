@@ -51,3 +51,6 @@ make test (optional step)
 * To destroy cluster use command "./create-cluster clean"
 
 ```
+
+## Create redis cluster manually
+
