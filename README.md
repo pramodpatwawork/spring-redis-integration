@@ -60,5 +60,5 @@ make test (optional step)
 12. Start Slave server using command ./$REDIS_ROOT/src/redis-server $REDIS_ROOT/redis-slave1.conf
 13. Start sentinel using command ./$REDIS_ROOT/src/redis-sentinel $REDIS_ROOT/sentinel.conf, repeat this step for sentinel1.conf and sentinel2.conf
 14. clone and install spring boot project (branch sentinel demo) and test with url http://localhost:8080/students/1, 
-15. First time program will take time to return result second time cached response will be return so will be immediate, after 5 minutes cache will automatically will be destroyed
+15. First time program will take time to return result second time cached response will be return so will be immediate, after 5 minutes cache will automatically be destroyed
 
