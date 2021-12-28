@@ -29,3 +29,19 @@
 ```
 
 ## Redis installation
+
+### Steps to install redis
+
+1. Install make using command on ubantu "sudo apt-get update" , "sudo apt-get install make". Please refer post to install make in case of any issue faced
+2. Visit to page https://redis.io/download
+3. Download redis from browser or wget command.
+4. Follow the instructions mentioned bellow on website, snip of step needs to be followed is:
+```
+wget https://download.redis.io/releases/redis-6.2.6.tar.gz
+tar xzf redis-6.2.6.tar.gz
+cd redis-6.2.6
+make
+make test (optional step)
+```
+
+## Configuration
