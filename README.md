@@ -45,3 +45,7 @@ make test (optional step)
 ```
 
 ## Configuration
+
+* Make copy of redis.conf using command "cp redis.conf redis-slave.conf"
+* Find tag port and change port from 6379 to 6380.
+* Find tag replicaof, uncomment and put host port of master node (replicaof 127.0.0.1 6379).
