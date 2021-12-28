@@ -90,7 +90,7 @@ Add all slave nodes to specific master node (see architecture diagram above) usi
 
 Test cluster using cli, "./$REDIS_ROOT/src/redis-cli -c -p 30001", "set foo bar", "get foo"
 
-You can now run application and can test wit cluster.
+You can now run application and can test with cluster.
 
 ```
 
