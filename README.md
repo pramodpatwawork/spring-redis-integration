@@ -57,4 +57,16 @@ make test (optional step)
 1. Follow steps from site  https://iamvishalkhare.medium.com/create-a-redis-cluster-faa89c5a6bb4, snip of steps that I followed are 
 
 ```
+Create 6 redis configurations with command "cp $REDIS_ROOT/redis.conf $REDIS_ROOT/redis-node1.conf" (were value node1 will be changed for each node) and change with bellow values
+
+port 30001
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+appendonly yes
+```
+```
+After change start 3 servers with command "./$REDIS_ROOT/redis-server $REDIS_ROOT/redis-node1.conf" (from node1 to node3)
+
+output for each server should have text ** running in cluster mode **
 ```
