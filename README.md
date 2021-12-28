@@ -45,3 +45,8 @@ make test (optional step)
 4. You can now run application and can test wit cluster.
 ```
 
+```
+* To stop cluster use command "./create-cluster stop"
+* To destroy cluster use command "./create-cluster clean"
+
+```
