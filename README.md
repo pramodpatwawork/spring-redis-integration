@@ -1,4 +1,4 @@
-# spring-redis-integration
+# spring-redis-integration (Spring boot redis cluster application)
 
 ## Node setup architecute on 3 machines 
  
