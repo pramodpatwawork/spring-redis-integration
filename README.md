@@ -46,6 +46,17 @@ make test (optional step)
 
 ## Configuration
 
-* Make copy of redis.conf using command "cp redis.conf redis-slave.conf"
-* Find tag port and change port from 6379 to 6380.
-* Find tag replicaof, uncomment and put host port of master node (replicaof 127.0.0.1 6379).
+1. Make copy of redis.conf using command "cp redis.conf redis-slave.conf"
+2. Find tag port and change port from 6379 to 6380.
+3. Find tag replicaof, uncomment and put host port of master node (replicaof 127.0.0.1 6379).
+4. Go to redis root directory and make copies (2 for our case) of file sentinel.conf, "cp sentinel.conf sentinel1.conf"
+5. Open file sentinel1.conf.
+6. Find tag sentinel-down-after-milliseconds, and change value from 30000 to 10000 (optional, after this time election of master node will happen)
+7. Review setting "review monitor mymaster 127.0.0.1 6379 2", last parameter will decide quorum,miimum node value to elect master.
+8. Find tag port and change value from 26379 to 26380 .
+9. Repeat steps from 5 to 8 for sentinel2 (value of sentinel port will be 26381). 
+10. Change configuration of sentinel.conf as well if needed (step no 6 atleast).
+11. Start master server using command ./$REDIS_ROOT/src/redis-server $REDIS_ROOT/redis.conf
+12. Start Slave server using command ./$REDIS_ROOT/src/redis-server $REDIS_ROOT/redis-slave1.conf
+13. Start sentinel using command ./$REDIS_ROOT/src/redis-sentinel $REDIS_ROOT/sentinel.conf, repeat this step for sentinel1.conf and sentinel2.conf
+
