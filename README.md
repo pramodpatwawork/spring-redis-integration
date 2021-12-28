@@ -54,7 +54,7 @@ make test (optional step)
 
 ## Create redis cluster manually
 
-1. Follow steps from site  https://iamvishalkhare.medium.com/create-a-redis-cluster-faa89c5a6bb4, snip of steps that I followed are 
+* Follow steps from site  https://iamvishalkhare.medium.com/create-a-redis-cluster-faa89c5a6bb4, snip of steps that I followed are 
 
 ```
 Create 6 redis configurations with command "cp $REDIS_ROOT/redis.conf $REDIS_ROOT/redis-node1.conf" (were value node1 will be changed for each node) and change with bellow values
@@ -72,8 +72,27 @@ output for each server should have text *Running in cluster mode*
 ```
 
 ```
-Create cluster using redis cli
+Create cluster og mster nodes using redis cli
 
 ./$REDIS_ROOT/redis-cli --cluster create 127.0.0.1:30001 127.0.0.1:30002 127.0.0.1:30003 --cluster-replicas 0
 
+Get clusters's id using command 
+
+./$REDIS_ROOT/src/redis-cli -c -p 30001 cluster nodes
+
+Command will show <cluster id> <ip>:port@pid <master/slave info>
 ```
+
+```
+Add all slave nodes to specific master node (see architecture diagram above) using command, specify master id based on output coming from above command 
+
+./$REDIS_ROOT/redis-cli --cluster add-node 127.0.0.1:30004 127.0.0.1:30001 --cluster-slave --cluster-master-id 3c3a0c74aae0b56170ccb03a76b60cfe7dc1912e
+
+Test cluster using cli, "./$REDIS_ROOT/src/redis-cli -c -p 30001", "set foo bar", "get foo"
+
+You can now run application and can test wit cluster.
+
+```
+
+
+
