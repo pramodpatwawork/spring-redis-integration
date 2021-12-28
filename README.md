@@ -19,3 +19,16 @@
   +----------+  +----------+  +----------+
   
 ```
+
+## Steps to create cluster using script
+
+1. Visit to page https://redis.io/download
+2. Download redis from browser or wget command.
+3. Follow the instructions mentioned bellow on website, snip of step needs to be followed is:
+```
+wget https://download.redis.io/releases/redis-6.2.6.tar.gz
+tar xzf redis-6.2.6.tar.gz
+cd redis-6.2.6
+make
+make test (optional step)
+```
