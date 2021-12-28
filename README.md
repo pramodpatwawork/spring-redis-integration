@@ -2,8 +2,8 @@
 
 ## Node setup architecute on 3 machines 
  
-* Redis ideal recommonds 1 machine for each node in production. 
-* POC considers 3 machines.
+* Redis ideally recommonds 1 machine for each node in production. 
+* POC considers 6 nodes on 3 machines.
 * Cluster works only when atleast one node from each shard is functional. Example Master A, Slave B, Master C are working. 
 ```
    Machine A     Machine B     Machine C  
@@ -20,7 +20,7 @@
   
 ```
 
-## Steps to install cluster
+## Steps to install redis
 
 1. Install make using command on ubantu "sudo apt-get update" , "sudo apt-get install make". Please refer post to install make in case of any issue faced
 2. Visit to page https://redis.io/download
@@ -72,7 +72,7 @@ output for each server should have text *Running in cluster mode*
 ```
 
 ```
-Create cluster og mster nodes using redis cli
+Create cluster of mster nodes using redis cli
 
 ./$REDIS_ROOT/redis-cli --cluster create 127.0.0.1:30001 127.0.0.1:30002 127.0.0.1:30003 --cluster-replicas 0
 
@@ -80,11 +80,11 @@ Get clusters's id using command
 
 ./$REDIS_ROOT/src/redis-cli -c -p 30001 cluster nodes
 
-Command will show <cluster id> <ip>:port@pid <master/slave info>
+Command will show ** <cluster id> <ip>:port@pid <master/slave info> **
 ```
 
 ```
-Add all slave nodes to specific master node (see architecture diagram above) using command, specify master id based on output coming from above command 
+Add all slave nodes to specific master node (see architecture diagram above) using bellow command, specify master id based on output coming from above step 
 
 ./$REDIS_ROOT/redis-cli --cluster add-node 127.0.0.1:30004 127.0.0.1:30001 --cluster-slave --cluster-master-id 3c3a0c74aae0b56170ccb03a76b60cfe7dc1912e
 
