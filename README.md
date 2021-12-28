@@ -6,6 +6,7 @@
 * POC considers 3 machines.
 * Cluster works only when atleast one node from each shard is functional. Example Master A, Slave B, Master C are working. 
 ```
+   Machine A     Machine B     Machine C  
   +----------+  +----------+  +----------+ 
   |  Master  |  |  Master  |  |  Master  |
   |    A     |  |    B     |  |    C     |
